@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: wikitext
+  namespace: pt
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: wikitext
+  template:
+    metadata:
+      labels:
+        app: wikitext
+    spec:
+      containers:
+        - name: wikitext
+          image: ghcr.io/dzfranklin/wikitext-server:latest
+          ports:
+            - name: http
+              containerPort: 8000
+          livenessProbe:
+            httpGet:
+              path: /health
+              port: http

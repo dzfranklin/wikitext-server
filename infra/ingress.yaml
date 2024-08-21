@@ -1,0 +1,25 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: wikitext-ingress-https
+  namespace: pt
+  labels:
+    app: wikitext
+  annotations:
+    traefik.ingress.kubernetes.io/router.entrypoints: websecure
+    traefik.ingress.kubernetes.io/router.tls: "true"
+spec:
+  rules:
+    - host: wikitext.plantopo.com
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: wikitext
+                port: { name: http }
+  tls:
+    - secretName: wildcard-prod
+      hosts:
+        - wikitext.plantopo.com

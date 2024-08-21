@@ -1,0 +1,12 @@
+{
+  "deno.enablePaths": [
+    "."
+  ],
+  "typescript.tsserver.experimental.enableProjectDiagnostics": false,
+  "yaml.schemas": {
+    "Kubernetes": [
+      "pod.*.yaml"
+    ],
+    "https://json.schemastore.org/github-workflow.json": "file:///Users/daniel/projects/wikitext-server/.github/workflows/deploy.yaml"
+  },
+}
